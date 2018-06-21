@@ -14,20 +14,16 @@ public class Driver {
     public static void main(String args[])throws IOException {
 
         ReadInput ri = new ReadInput();
-        ri.readBasic();
-      //  System.out.println("### READ FILE ###");
-        SortRequest sr = new SortRequest();
-        sr.sort(ri.getReq());
-      //  System.out.println("### BEFORE DIJKSTRAS ###");
+        ri.readBasic();                                             //  Read input file
+        SortRequest sr = new SortRequest();             
+        sr.sort(ri.getReq());                                       //  Sort Request according to End Time of the Request
         Dijkstras dj = new Dijkstras();
-       // int[][] loc= new int[ri.getN()];
         for(int i=0;i<ri.getN();i++) {
-            Dijkstras.dij(ri.getLocation(),i,ri.getN());
+            Dijkstras.dij(ri.getLocation(), i, ri.getN());
         }
-       // System.out.println("### BEFORE SCHEDULING ###");
         Scheduling sd = new Scheduling();
-        sd.schedule(ri.getCar(), ri.getReq(), ri.getLocation());
+        sd.schedule(ri.getCar(), ri.getReq(), ri.getLocation());    //  Scheduling Requests
         OutputRevenue o = new OutputRevenue();
-        o.writeOutput(ri.getCar());
+        o.writeOutput(ri.getCar());                                 //  For output
     }
 }
